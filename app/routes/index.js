@@ -20,7 +20,7 @@ module.exports = (app) => {
   app.use('/auth', require('./auth'))
   app.use('/users', require('./user'))
   app.use('/friends', require('./friend'))
-  app.use('/rooms', require('./room'))
+  app.use('/roooms', require('./room'))
   app.use(logErrors)
   app.use(clientErrorHandler)
   // app.use(errorHandler)
