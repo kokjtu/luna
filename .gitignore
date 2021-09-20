@@ -1,7 +1,9 @@
 #Node Dependencies
 node_modules
 
-uploads
+*
+!*/
+!uploads/avatar_default.jpg
 
 .env
 
