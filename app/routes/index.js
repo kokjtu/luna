@@ -13,7 +13,7 @@ function clientErrorHandler(err, req, res, next) {
   res.status(500).send({ error: 'Something failed!' })
 }
 
-router.route(['/', '/login', '/home']).get(controllers.index)
+router.route(['/', '/login', '/register', '/home']).get(controllers.index)
 
 module.exports = (app) => {
   app.use('/', router)
