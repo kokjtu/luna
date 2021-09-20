@@ -1,6 +1,7 @@
 const User = require('../models/User')
 const mongoose = require('mongoose')
 const { host } = require('../config')
+const fs = require('fs')
 
 const getUsers = async (req, res, next) => {
   let users = await User.find(req.query)
@@ -51,14 +52,24 @@ const updateUser = async (req, res, next) => {
 
   const newUser = req.body
 
-  const user = await User.findByIdAndUpdate(
+  let user = await User.findByIdAndUpdate(
     userID,
     {
       ...newUser,
-      avatar: req.file ? host + '/' + req.file.path : '',
     },
     { new: true }
   )
+
+  if (req.file) {
+    try {
+      let filePath = user.avatar.replace(host + '/', '') 
+      fs.unlinkSync(filePath);
+    } catch (error) {
+      console.error(error.message)
+    }
+    user.avatar = host + '/' + req.file.path
+    user = await user.save()
+  }
 
   let { _id, firstName, lastName, email, avatar } = user
   return res.status(200).json({
