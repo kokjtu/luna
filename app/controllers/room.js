@@ -3,7 +3,6 @@ const User = require('../models/User')
 const mongoose = require('mongoose')
 
 const getRooms = async (req, res, next) => {
-  console.log('GET_ROOMS')
   if (req.query && req.query.friendID) {
     let userIDs = [
       ...new Set([req.query.friendID, req.user._id.toString()]),
@@ -13,8 +12,8 @@ const getRooms = async (req, res, next) => {
       {
         $lookup: {
           from: 'users',
-          localField: 'users',
-          foreignField: '_id',
+          // localField: 'users',
+          // foreignField: '_id',
           pipeline: [
             {
               $project: {
