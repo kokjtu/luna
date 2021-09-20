@@ -40,9 +40,15 @@ const getRooms = async (req, res, next) => {
     {
       $lookup: {
         from: 'rooms',
-        localField: 'rooms.room',
+        // localField: 'rooms.room',
         // foreignField: '_id',
+        let: { roomID: '$rooms.room' },
         pipeline: [
+          {
+            $match: {
+              $expr: { $eq: ['$$roomID', '$_id'] },
+            },
+          },
           {
             $lookup: {
               from: 'users',
