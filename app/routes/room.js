@@ -10,7 +10,9 @@ require('../middlewares/passport')
 
 router.use(passport.authenticate('jwt', { session: false }))
 
-router.route('/').get(RoomController.getRooms)
+router.route('/').get((req, res, next) => {
+  res.status(200).json({'rooms': true})
+})
 
 router
   .route('/:roomID')
