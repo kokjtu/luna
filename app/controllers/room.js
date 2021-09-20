@@ -46,8 +46,8 @@ const getRooms = async (req, res, next) => {
           {
             $lookup: {
               from: 'users',
-              localField: 'users',
-              foreignField: '_id',
+              // localField: 'users',
+              // foreignField: '_id',
               pipeline: [
                 {
                   $project: {
