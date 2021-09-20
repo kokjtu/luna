@@ -39,7 +39,7 @@ const getRooms = async (req, res, next) => {
     },
     {
       $lookup: {
-        from: 'rooms',
+        from: 'rooms.room',
         // localField: 'rooms.room',
         // foreignField: '_id',
         pipeline: [
