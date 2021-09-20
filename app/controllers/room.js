@@ -40,8 +40,8 @@ const getRooms = async (req, res, next) => {
     {
       $lookup: {
         from: 'rooms',
-        localField: 'rooms.room',
-        foreignField: '_id',
+        // localField: 'rooms.room',
+        // foreignField: '_id',
         pipeline: [
           {
             $lookup: {
