@@ -1,9 +1,9 @@
 #Node Dependencies
 node_modules
 
-*
-!*/
-!uploads/avatar_default.jpg
+# *
+# !*/
+# !uploads/avatar_default.jpg
 
 .env
 
