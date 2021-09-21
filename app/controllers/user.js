@@ -50,20 +50,21 @@ const replaceUser = async (req, res, next) => {
 const updateUser = async (req, res, next) => {
   const userID = req.user._id
 
-  const newUser = req.body
+  const { first_name, last_name } = req.body
 
   let user = await User.findByIdAndUpdate(
     userID,
     {
-      ...newUser,
+      first_name,
+      last_name,
     },
     { new: true }
   )
 
   if (req.file) {
     try {
-      let filePath = user.avatar.replace(host + '/', '') 
-      fs.unlinkSync(filePath);
+      let filePath = user.avatar.replace(host + '/', '')
+      fs.unlinkSync(filePath)
     } catch (error) {
       console.error(error.message)
     }
