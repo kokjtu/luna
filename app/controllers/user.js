@@ -50,13 +50,13 @@ const replaceUser = async (req, res, next) => {
 const updateUser = async (req, res, next) => {
   const userID = req.user._id
 
-  const { first_name, last_name } = req.body
+  const { firstName, lastName } = req.body
 
   let user = await User.findByIdAndUpdate(
     userID,
     {
-      first_name,
-      last_name,
+      firstName,
+      lastName,
     },
     { new: true }
   )
@@ -72,7 +72,7 @@ const updateUser = async (req, res, next) => {
     user = await user.save()
   }
 
-  let { _id, firstName, lastName, email, avatar } = user
+  let { _id, email, avatar } = user
   return res.status(200).json({
     _id,
     firstName,
