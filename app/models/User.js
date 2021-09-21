@@ -66,6 +66,8 @@ const UserSchema = new Schema({
 
 UserSchema.pre('save', async function (next) {
   try {
+    let user = this
+    if (!user.isModified('password')) return next()
     // Generate a salt
     const salt = await bcrypt.genSalt(10)
     // Generate a password hash (salt + hash)
